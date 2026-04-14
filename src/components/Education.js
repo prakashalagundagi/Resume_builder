@@ -266,39 +266,15 @@ const Education = ({ data, updateData }) => {
                           />
                           <IconButton
                             icon={<DeleteIcon />}
+                            size="sm"
+                            variant="ghost"
+                            colorScheme="red"
+                            onClick={() => handleDelete(index)}
+                            aria-label="Delete education"
+                          />
                         </HStack>
-                        <Text fontWeight="medium">{edu.institution}</Text>
-                        <Text color="gray.600" fontSize="sm">
-                          {edu.location && `${edu.location} • `}
-                          {edu.startDate} - {edu.current ? 'Present' : edu.endDate}
-                          {edu.gpa && ` • GPA: ${edu.gpa}`}
-                        </Text>
-                        {edu.achievements && (
-                          <Text color="gray.700" fontSize="sm">
-                            {edu.achievements}
-                          </Text>
-                        )}
-                      </VStack>
-                      <HStack>
-                        <IconButton
-                          icon={<EditIcon />}
-                          size="sm"
-                          variant="ghost"
-                          colorScheme="blue"
-                          onClick={() => handleEdit(index)}
-                          aria-label="Edit education"
-                        />
-                        <IconButton
-                          icon={<DeleteIcon />}
-                          size="sm"
-                          variant="ghost"
-                          colorScheme="red"
-                          onClick={() => handleDelete(index)}
-                          aria-label="Delete education"
-                        />
                       </HStack>
-                    </HStack>
-                  </Card>
+                    </Card>
                 ))}
               </VStack>
             )}
