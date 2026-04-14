@@ -14,7 +14,8 @@ import {
   Button,
   IconButton,
   useToast,
-  Select
+  Select,
+  Checkbox
 } from '@chakra-ui/react';
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
@@ -195,6 +196,16 @@ const Education = ({ data, updateData }) => {
                         onChange={(e) => handleInputChange('gpa', e.target.value)}
                         placeholder="3.8"
                       />
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Currently Studying</FormLabel>
+                      <Checkbox
+                        isChecked={formData.current}
+                        onChange={(e) => handleInputChange('current', e.target.checked)}
+                      >
+                        I am currently studying here
+                      </Checkbox>
                     </FormControl>
                   </HStack>
 
