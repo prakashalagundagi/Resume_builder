@@ -598,7 +598,7 @@ function downloadResume() {
     // PDF generation options
     const opt = {
         margin: 10,                                    // PDF margin in mm
-        filename: 'resume.pdf',                        // Output filename
+        filename: '${name} Resume.pdf',                        // Output filename
         image: { type: 'jpeg', quality: 0.98 },       // Image quality
         html2canvas: { scale: 2 },                    // Canvas scale for higher quality
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }  // PDF format
