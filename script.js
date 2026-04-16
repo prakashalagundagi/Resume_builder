@@ -595,13 +595,17 @@ function downloadResume() {
     // Get the resume preview element
     const element = document.getElementById('resumePreview');
     
+    // 🔥 GET NAME DYNAMICALLY (ADDED)
+    const rawName = resumeData.personal.fullName || "Resume";
+    const name = rawName.replace(/[^a-z0-9]/gi, "_");
+    
     // PDF generation options
     const opt = {
-        margin: 10,                                    // PDF margin in mm
-        filename: '${name} Resume.pdf',                        // Output filename
-        image: { type: 'jpeg', quality: 0.98 },       // Image quality
-        html2canvas: { scale: 2 },                    // Canvas scale for higher quality
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }  // PDF format
+        margin: 10,                                    
+        filename: `${name} Resume.pdf`,   // ✅ FIXED HERE
+        image: { type: 'jpeg', quality: 0.98 },       
+        html2canvas: { scale: 2 },                    
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }  
     };
     
     // Generate and download PDF
@@ -624,7 +628,6 @@ function downloadResume() {
         showToast('Error generating PDF. Please try again.', 'error');
     });
 }
-
 /**
  * Shows a toast notification for user feedback
  * @param {string} message - The message to display
