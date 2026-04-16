@@ -598,7 +598,8 @@ function downloadResume() {
     // 🔥 GET NAME DYNAMICALLY (ADDED)
     const rawName = resumeData.personal.fullName || "Resume";
     const name = rawName.replace(/[^a-z0-9]/gi, "_");
-    
+
+    console.log(name);
     // PDF generation options
     const opt = {
         margin: 10,                                    
