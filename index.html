@@ -1,0 +1,369 @@
+<!-- 
+    Resume Builder Application
+    Traditional Resume Format with Modern UI
+    
+    Features:
+    - Traditional resume sections (Personal, Objective, Education, Skills, Experience, Declaration)
+    - Live preview with real-time updates
+    - PDF export functionality
+    - Professional glassmorphism design
+    - Responsive layout
+    - Local storage persistence
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional resume builder with traditional format and modern UI">
+    <meta name="keywords" content="resume, builder, professional, traditional, PDF">
+    <title>Resume Builder - Create Professional Resumes</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 
+        Animated Background
+        Floating particles for visual effect
+        Created dynamically via JavaScript
+    -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Application Container -->
+    <div class="container">
+        <!-- 
+            Application Header
+            Contains title and subtitle with gradient effects
+        -->
+        <header>
+            <h1>Resume Builder</h1>
+            <p>Create professional resumes in minutes</p>
+        </header>
+
+        <!-- 
+            Main Content Area
+            Two-column layout: Editor Panel + Preview Panel
+        -->
+        <main class="main-content">
+            <!-- 
+                Editor Panel
+                Contains all form inputs organized in tabs
+                Features glassmorphism design
+            -->
+            <div class="editor-panel">
+                <!-- 
+                    Tab Navigation
+                    Switches between different resume sections
+                    Active tab indicated by 'active' class
+                -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="personal">Personal</button>
+                    <button class="tab" data-tab="objective">Objective</button>
+                    <button class="tab" data-tab="education">Education</button>
+                    <button class="tab" data-tab="skills">Skills</button>
+                    <button class="tab" data-tab="experience">Experience</button>
+                    <button class="tab" data-tab="declaration">Declaration</button>
+                </div>
+
+                <!-- 
+                    Tab Content Container
+                    Holds all form panels, only one visible at a time
+                -->
+                <div class="tab-content">
+                    <!-- 
+                        Personal Information Tab Panel
+                        Contains basic personal details and contact information
+                        Active by default
+                    -->
+                    <div class="tab-panel active" id="personal">
+                        <h2>Personal Information</h2>
+                        
+                        <!-- Full Name Input -->
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="John Doe">
+                        </div>
+                        
+                        <!-- Professional Role Input -->
+                        <div class="form-group">
+                            <label for="role">Professional Role</label>
+                            <input type="text" id="role" placeholder="Full Stack Developer">
+                        </div>
+                        
+                        <!-- Email Input -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="john@example.com">
+                        </div>
+                        
+                        <!-- Phone Input -->
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" placeholder="+1234567890">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" placeholder="City, Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="text" id="linkedin" placeholder="linkedin.com/in/johndoe">
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherName">Father's Name</label>
+                            <input type="text" id="fatherName" placeholder="Father's Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="languages">Languages Known</label>
+                            <input type="text" id="languages" placeholder="English, Kannada, Hindi">
+                        </div>
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" id="nationality" placeholder="Indian">
+                        </div>
+                        <div class="form-group">
+                            <label for="maritalStatus">Marital Status</label>
+                            <select id="maritalStatus">
+                                <option value="">Select Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Career Objective Tab -->
+                    <div class="tab-panel" id="objective">
+                        <h2>Career Objective</h2>
+                        <div class="form-group">
+                            <label for="careerObjective">Your Career Objective</label>
+                            <textarea id="careerObjective" placeholder="To make contribution in organization with best of my ability and also to Develop new skills during interaction to achieve new heights." rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div class="tab-panel" id="education">
+                        <h2>Education</h2>
+                        <div id="educationList">
+                            <div class="education-item">
+                                <div class="form-group">
+                                    <label>Degree</label>
+                                    <input type="text" class="edu-degree" placeholder="B.Tech Computer Engineering">
+                                </div>
+                                <div class="form-group">
+                                    <label>Institution</label>
+                                    <input type="text" class="edu-institution" placeholder="University Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Year</label>
+                                    <input type="text" class="edu-year" placeholder="2018-2022">
+                                </div>
+                                <div class="form-group">
+                                    <label>CGPA/Grade</label>
+                                    <input type="text" class="edu-cgpa" placeholder="8.5 CGPA">
+                                </div>
+                                <button class="remove-btn" onclick="removeEducation(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="add-btn" onclick="addEducation()">Add Education</button>
+                    </div>
+
+                    <!-- Skills Tab -->
+                    <div class="tab-panel" id="skills">
+                        <h2>Skills</h2>
+                        <div class="form-group">
+                            <label for="skillInput">Add Skill</label>
+                            <div class="skill-input-group">
+                                <input type="text" id="skillInput" placeholder="Enter a skill">
+                                <button onclick="addSkill()">Add</button>
+                            </div>
+                        </div>
+                        <div id="skillsList" class="skills-list"></div>
+                    </div>
+
+                    <!-- Experience Tab -->
+                    <div class="tab-panel" id="experience">
+                        <h2>Work Experience</h2>
+                        <div id="experienceList">
+                            <div class="experience-item">
+                                <div class="form-group">
+                                    <label>Job Title</label>
+                                    <input type="text" class="exp-title" placeholder="Software Developer">
+                                </div>
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    <input type="text" class="exp-company" placeholder="Company Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Duration</label>
+                                    <input type="text" class="exp-duration" placeholder="2022-2023">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="exp-description" placeholder="Describe your responsibilities and achievements"></textarea>
+                                </div>
+                                <button class="remove-btn" onclick="removeExperience(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button class="add-btn" onclick="addExperience()">Add Experience</button>
+                    </div>
+
+                    <!-- Declaration Tab -->
+                    <div class="tab-panel" id="declaration">
+                        <h2>Declaration</h2>
+                        <div class="form-group">
+                            <label for="declaration">Declaration Statement</label>
+                            <textarea id="declaration" placeholder="I hereby declare that the information furnished above is true to the best of my knowledge." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="place">Place</label>
+                            <input type="text" id="place" placeholder="City">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h2>Resume Preview</h2>
+                    <div class="preview-actions">
+                        <button onclick="downloadResume()" class="download-btn">Download PDF</button>
+                    </div>
+                </div>
+                <div id="resumePreview" class="resume-preview">
+                    <div class="resume-content">
+                        <!-- Resume Title -->
+                        <div class="resume-title">
+                            <h1>RESUME</h1>
+                        </div>
+
+                        <!-- Personal Details -->
+                        <section class="resume-section">
+                            <div class="personal-details">
+                                <h2 id="preview-name">Your Name</h2>
+                                <div class="contact-details">
+                                    <p id="preview-address">Your Address</p>
+                                    <p id="preview-phone">Mob No. : +1234567890</p>
+                                    <p id="preview-email">Email Id : your.email@example.com</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Career Objective -->
+                        <section class="resume-section" id="preview-objective">
+                            <h2>CAREER OBJECTIVE</h2>
+                            <p id="preview-career-objective">To make contribution in organization with best of my ability and also to Develop new skills during interaction to achieve new heights.</p>
+                        </section>
+
+                        <!-- Academic Qualification -->
+                        <section class="resume-section" id="preview-education">
+                            <h2>ACADEMIC QUALIFICATION</h2>
+                            <table class="academic-table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Qualification</th>
+                                        <th>University/Board</th>
+                                        <th>Year</th>
+                                        <th>Per %</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="education-table-body">
+                                    <!-- Education entries will be added here -->
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- Other Qualification -->
+                        <section class="resume-section" id="preview-skills">
+                            <h2>OTHER QUALIFICATION</h2>
+                            <ul class="skills-list">
+                                <!-- Skills will be added here -->
+                            </ul>
+                        </section>
+
+                        <!-- Work Experience -->
+                        <section class="resume-section" id="preview-experience">
+                            <h2>WORK EXPERIENCE</h2>
+                            <div class="work-experience-content">
+                                <p id="preview-work-status">Fresher</p>
+                            </div>
+                        </section>
+
+                        <!-- Personal Information -->
+                        <section class="resume-section" id="preview-personal-info">
+                            <h2>PERSONAL INFORMATION</h2>
+                            <div class="personal-info-grid">
+                                <div class="info-row">
+                                    <span class="info-label">Father's Name :</span>
+                                    <span class="info-value" id="preview-father-name">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Date of Birth :</span>
+                                    <span class="info-value" id="preview-dob">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Language Known :</span>
+                                    <span class="info-value" id="preview-languages">English, Kannada</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Gender :</span>
+                                    <span class="info-value" id="preview-gender">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Nationality :</span>
+                                    <span class="info-value" id="preview-nationality">Indian</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Marital Status :</span>
+                                    <span class="info-value" id="preview-marital-status">Single</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Declaration -->
+                        <section class="resume-section" id="preview-declaration">
+                            <h2>DECLARATION</h2>
+                            <p id="preview-declaration-text">I hereby declare that information furnished above is true to the best of my knowledge.</p>
+                            <div class="declaration-signature">
+                                <div class="date-place">
+                                    <p><strong>Date:</strong> <span id="preview-date">-</span></p>
+                                    <p><strong>Place:</strong> <span id="preview-place">-</span></p>
+                                </div>
+                                <div class="signature">
+                                    <p>(<span id="preview-signature-name">Your Name</span>)</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="script.js?v=2"></script>
+</body>
+</html>
