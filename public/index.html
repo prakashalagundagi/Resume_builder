@@ -4,17 +4,80 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Resume Generator - Create professional resumes in minutes" />
-    <meta name="keywords" content="resume, CV, generator, professional, job, career" />
+    <meta name="theme-color" content="#805AD5" />
+    <meta name="description" content="Resume Generator - Create professional resumes in minutes with our easy-to-use resume builder tool" />
+    <meta name="keywords" content="resume, CV, generator, professional, job, career, builder, template" />
     <meta name="author" content="Resume Builder App" />
-    <meta property="og:title" content="Resume Generator" />
-    <meta property="og:description" content="Create professional resumes in minutes" />
+    <meta property="og:title" content="Resume Generator - Professional Resume Builder" />
+    <meta property="og:description" content="Create professional resumes in minutes with our easy-to-use resume builder tool" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Resume Generator - Professional Resume Builder" />
+    <meta name="twitter:description" content="Create professional resumes in minutes" />
+    <link rel="canonical" href="https://prakashalagundagi.github.io/Resume_builder/" />
     <title>Resume Generator - Professional Resume Builder</title>
+    <style>
+      /* Critical CSS for loading */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f7fafc;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading animation */
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f7fafc;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e2e8f0;
+        border-top: 4px solid #805AD5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" role="application" aria-label="Resume Builder Application"></div>
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>JavaScript Required</h2>
+        <p>You need to enable JavaScript to run this resume builder application.</p>
+        <p>Please enable JavaScript in your browser settings and reload the page.</p>
+      </div>
+    </noscript>
+    <div id="root" role="application" aria-label="Resume Builder Application">
+      <div class="loading" aria-label="Loading application">
+        <div class="loading-spinner" aria-hidden="true"></div>
+      </div>
+    </div>
+    <script>
+      // Remove loading spinner once React app loads
+      window.addEventListener('load', function() {
+        const loading = document.querySelector('.loading');
+        if (loading && document.querySelector('#root > div:not(.loading)')) {
+          loading.remove();
+        }
+      });
+    </script>
   </body>
 </html>
