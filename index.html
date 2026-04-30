@@ -1,116 +1,138 @@
-<!-- 
-    Resume Builder Application
-    Traditional Resume Format with Modern UI
-    
-    Features:
-    - Traditional resume sections (Personal, Objective, Education, Skills, Experience, Declaration)
-    - Live preview with real-time updates
-    - PDF export functionality
-    - Professional glassmorphism design
-    - Responsive layout
-    - Local storage persistence
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional resume builder with traditional format and modern UI">
-    <meta name="keywords" content="resume, builder, professional, traditional, PDF">
-    <title>Resume Builder - Create Professional Resumes</title>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Builder</title>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- 
-        Animated Background
-        Floating particles for visual effect
-        Created dynamically via JavaScript
-    -->
-    <div class="particles" id="particles"></div>
-    
-    <!-- Main Application Container -->
-    <div class="container">
-        <!-- 
-            Application Header
-            Contains title and subtitle with gradient effects
-        -->
-        <header>
-            <h1>Resume Builder</h1>
-            <p>Create professional resumes in minutes</p>
-        </header>
 
-        <!-- 
-            Main Content Area
-            Two-column layout: Editor Panel + Preview Panel
-        -->
-        <main class="main-content">
-            <!-- 
-                Editor Panel
-                Contains all form inputs organized in tabs
-                Features glassmorphism design
-            -->
-            <div class="editor-panel">
-                <!-- 
-                    Tab Navigation
-                    Switches between different resume sections
-                    Active tab indicated by 'active' class
-                -->
-                <div class="tabs">
-                    <button class="tab active" data-tab="personal">Personal</button>
-                    <button class="tab" data-tab="objective">Objective</button>
-                    <button class="tab" data-tab="education">Education</button>
-                    <button class="tab" data-tab="skills">Skills</button>
-                    <button class="tab" data-tab="experience">Experience</button>
-                    <button class="tab" data-tab="declaration">Declaration</button>
-                </div>
+<div class="container">
 
-                <!-- 
-                    Tab Content Container
-                    Holds all form panels, only one visible at a time
-                -->
-                <div class="tab-content">
-                    <!-- 
-                        Personal Information Tab Panel
-                        Contains basic personal details and contact information
-                        Active by default
-                    -->
-                    <div class="tab-panel active" id="personal">
-                        <h2>Personal Information</h2>
-                        
-                        <!-- Full Name Input -->
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" placeholder="John Doe">
-                        </div>
-                        
-                        <!-- Professional Role Input -->
-                        <div class="form-group">
-                            <label for="role">Professional Role</label>
-                            <input type="text" id="role" placeholder="Full Stack Developer">
-                        </div>
-                        
-                        <!-- Email Input -->
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="john@example.com">
-                        </div>
-                        
-                        <!-- Phone Input -->
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" placeholder="+1234567890">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="City, Country">
-                        </div>
-                        <div class="form-group">
+<header>
+    <h1>Resume Builder</h1>
+    <p>Create professional resumes</p>
+    <button onclick="toggleTheme()">🌙 Dark Mode</button>
+</header>
+
+<div class="progress-bar"><div id="progress"></div></div>
+
+<main class="main-content">
+
+<!-- EDITOR -->
+<div class="editor-panel">
+
+<div class="tabs">
+<button class="tab active" data-tab="personal">Personal</button>
+<button class="tab" data-tab="objective">Objective</button>
+<button class="tab" data-tab="education">Education</button>
+<button class="tab" data-tab="skills">Skills</button>
+<button class="tab" data-tab="experience">Experience</button>
+<button class="tab" data-tab="projects">Projects</button>
+<button class="tab" data-tab="declaration">Declaration</button>
+</div>
+
+<div class="tab-content">
+
+<!-- PERSONAL -->
+<div class="tab-panel active" id="personal">
+<input id="fullName" placeholder="Full Name">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+<input id="address" placeholder="Address">
+
+<!-- NEW -->
+<input type="file" id="profilePhoto">
+
+</div>
+
+<!-- OBJECTIVE -->
+<div class="tab-panel" id="objective">
+<textarea id="careerObjective" placeholder="Objective"></textarea>
+</div>
+
+<!-- EDUCATION -->
+<div class="tab-panel" id="education">
+<textarea id="educationText" placeholder="Education"></textarea>
+</div>
+
+<!-- SKILLS -->
+<div class="tab-panel" id="skills">
+<textarea id="skillsText" placeholder="Skills comma separated"></textarea>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="tab-panel" id="experience">
+<textarea id="experienceText" placeholder="Experience"></textarea>
+</div>
+
+<!-- PROJECTS (NEW) -->
+<div class="tab-panel" id="projects">
+<textarea id="projectsInput" placeholder="Projects"></textarea>
+</div>
+
+<!-- DECLARATION -->
+<div class="tab-panel" id="declaration">
+<textarea id="declaration" placeholder="Declaration"></textarea>
+<input type="date" id="date">
+<input id="place" placeholder="Place">
+</div>
+
+</div>
+</div>
+
+<!-- PREVIEW -->
+<div class="preview-panel">
+
+<button onclick="downloadResume()">Download PDF</button>
+
+<div id="resumePreview">
+
+<img id="preview-photo">
+
+<h2 id="preview-name">Your Name</h2>
+<p id="preview-email"></p>
+<p id="preview-phone"></p>
+<p id="preview-address"></p>
+
+<h3>Objective</h3>
+<p id="preview-objective"></p>
+
+<h3>Education</h3>
+<p id="preview-education"></p>
+
+<h3>Skills</h3>
+<ul id="preview-skills"></ul>
+
+<h3>Experience</h3>
+<p id="preview-experience"></p>
+
+<h3>Projects</h3>
+<p id="preview-projects"></p>
+
+<h3>Declaration</h3>
+<p id="preview-declaration"></p>
+
+<p>Date: <span id="preview-date"></span></p>
+<p>Place: <span id="preview-place"></span></p>
+
+<p>(<span id="preview-signature-name"></span>)</p>
+
+</div>
+</div>
+
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+    </html>                        <div class="form-group">
                             <label for="linkedin">LinkedIn</label>
                             <input type="text" id="linkedin" placeholder="linkedin.com/in/johndoe">
                         </div>
